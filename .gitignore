@@ -1,0 +1,19 @@
+/node_modules
+/.next/
+/out/
+/build
+.DS_Store
+*.pem
+npm-debug.log*
+.env*.local
+.vercel
+*.tsbuildinfo
+
+# Configurações locais e registros de trabalho
+.codex/
+.agents/
+.aws/
+artifacts/
+AGENTS.md
+.env*
+!.env.example

@@ -1,0 +1,23 @@
+═══════════════════════════════════════════════════════════════
+  IMAGENS DO SITE — Dog Room
+═══════════════════════════════════════════════════════════════
+
+Basta soltar os arquivos abaixo NESTA pasta (/public/images) com
+EXATAMENTE estes nomes. O site troca os placeholders pelas fotos
+automaticamente — não precisa mexer em código.
+
+Para os cães, use PNG com FUNDO TRANSPARENTE (recortado).
+
+┌─ arquivo ──────────────┬─ o que é ───────────────────────────┐
+│ dog-hero.png           │ Labrador preto recortado (herói)     │
+│ groomer.jpg            │ Foto da tosadora com o cão (seção 2) │
+│ philo-1.png            │ Miniatura filosofia 1 (border collie)│
+│ philo-2.png            │ Miniatura filosofia 2 (frascos)      │
+│ philo-3.png            │ Miniatura filosofia 3 (cão branco)   │
+│ philo-4.png            │ Miniatura filosofia 4 (shih-tzu)     │
+│ bulldog.png            │ Buldogue francês recortado (seção 4) │
+│ billboard-street.jpg   │ Fundo de rua p/ o outdoor (opcional) │
+└────────────────────────┴──────────────────────────────────────┘
+
+Dica: pra recortar (tirar o fundo) use remove.bg, o Photoroom ou a
+ferramenta "remover fundo" do próprio Figma/Canva.

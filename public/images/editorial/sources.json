@@ -1,0 +1,26 @@
+{
+  "license": "https://www.pexels.com/license/",
+  "usage": "Fotografias ilustrativas; não representam a equipe ou os clientes do Dog Room.",
+  "assets": [
+    {
+      "file": "banho.jpg",
+      "photographer": "Tima Miroshnichenko",
+      "source": "https://www.pexels.com/photo/close-up-photo-of-bathing-of-dog-6131165/"
+    },
+    {
+      "file": "pelagem.jpg",
+      "photographer": "Gustavo Fring",
+      "source": "https://www.pexels.com/photo/close-up-photo-of-a-dog-being-groomed-6816850/"
+    },
+    {
+      "file": "atendimento.jpg",
+      "photographer": "Goochie Poochie Grooming",
+      "source": "https://www.pexels.com/photo/groomer-washing-dog-19145895/"
+    },
+    {
+      "file": "detalhes.jpg",
+      "photographer": "Goochie Poochie Grooming",
+      "source": "https://www.pexels.com/photo/woman-hand-trimming-dog-19145880/"
+    }
+  ]
+}

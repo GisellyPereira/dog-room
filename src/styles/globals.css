@@ -1,0 +1,356 @@
+/* ============================================================
+   Tailwind CSS v4 — tokens do design + utilitários
+   (SEM preflight de propósito: o layout afinado abaixo é
+    preservado 1:1, sem reset alterando nada visual)
+   ============================================================ */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* Tokens do design expostos ao Tailwind (bg-paper, text-ink, font-hand, ...) */
+@theme {
+  --color-paper: #fffefe;
+  --color-ink: #11110f;
+  --color-purple: #a891da;
+  --color-purple-dk: #8f74cf;
+  --color-yellow: #fff394;
+  --color-grey: #404040;
+  --color-grey-2: #6a6a68;
+
+  --font-sans: var(--font-poppins), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-hand: var(--font-caveat), 'Segoe Print', 'Comic Sans MS', cursive;
+
+  --radius-card: 22px;
+}
+
+/* ============================================================
+   ⬇⬇  Design system afinado do Dog Room (inalterado)  ⬇⬇
+   ============================================================ */
+/* ============================================================
+   Dog Room — banho, tosa & carinho
+   Paleta do briefing:
+   #FFFEFE papel · #11110F tinta · #A891DA roxo · #FFF394 amarelo · #404040 cinza
+   Tipografia: Poppins (headline+corpo) + Caveat (acento à mão / ex-Segoe Print)
+   ============================================================ */
+
+:root{
+  --paper:  #FFFEFE;
+  --ink:    #11110F;
+  --purple: #A891DA;
+  --purple-dk:#8f74cf;
+  --yellow: #FFF394;
+  --grey:   #404040;
+  --grey-2: #6a6a68;
+
+  --font: var(--font-poppins),system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand: var(--font-caveat),"Segoe Print","Comic Sans MS",cursive;
+
+  --maxw: 1440px;
+  --gut:  clamp(18px,4vw,64px);
+  --r:    22px;   /* raio dos cards */
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--font);font-size:clamp(1rem,.96rem + .2vw,1.06rem);
+  line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;overflow-x:hidden;
+}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--purple);color:var(--ink)}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+
+/* ---------- tipografia utilitária ---------- */
+.h-title{font-family:var(--font);font-weight:600;line-height:.98;letter-spacing:-.05em}
+.hand{font-family:var(--hand);font-weight:700;line-height:.9;letter-spacing:0}
+.hand--p{color:var(--purple)}
+.hand--y{color:var(--yellow)}
+.label{font-family:var(--font);font-weight:500;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-2)}
+.idx{font-family:var(--font);font-weight:500;font-size:.78rem;letter-spacing:.05em;color:var(--grey-2)}
+.section{padding-block:clamp(80px,11vw,150px)}
+
+/* máscara p/ reveal por linha */
+.line{display:block;overflow:hidden}
+.line > span{display:block;will-change:transform}
+
+/* ---------- botões pill ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  font-family:var(--font);font-weight:500;font-size:.92rem;
+  padding:.9em 1.6em;border-radius:100px;border:1.5px solid transparent;cursor:pointer;
+  background:var(--purple);color:var(--ink);position:relative;overflow:hidden;
+  transition:transform .3s ease;
+}
+.btn span{position:relative;z-index:1}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);
+  transition:transform .4s cubic-bezier(.7,0,.2,1);z-index:0}
+.btn:hover{color:var(--paper)}
+.btn:hover::before{transform:translateY(0)}
+.btn--outline{background:transparent;border-color:var(--ink);color:var(--ink)}
+.btn--outline:hover{color:var(--paper)}
+.btn--ghost-light{background:transparent;border-color:rgba(255,254,254,.4);color:var(--paper)}
+.btn--ghost-light::before{background:var(--paper)}
+.btn--ghost-light:hover{color:var(--ink)}
+
+/* ---------- cursor: normal do sistema + pointer nos clicáveis ---------- */
+a[href],button,[role="button"],.btn{cursor:pointer}
+
+/* ---------- placeholder de imagem ---------- */
+.ph{position:relative;overflow:hidden;border-radius:var(--r);background:#eceaf4;isolation:isolate}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph__fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  background:
+    repeating-linear-gradient(45deg,rgba(168,145,218,.10) 0 12px,transparent 12px 24px),
+    linear-gradient(160deg,#efedf7,#e4e0f2);
+  color:var(--purple-dk);text-align:center;padding:16px}
+.ph__fallback svg{width:clamp(38px,7vw,64px);height:auto;fill:var(--purple);opacity:.85}
+.ph__fallback span{font-family:var(--font);font-weight:500;font-size:.72rem;letter-spacing:.04em;color:var(--grey);max-width:22ch}
+.ph__fallback b{display:block;font-family:var(--hand);font-weight:700;font-size:1.5rem;color:var(--purple-dk);letter-spacing:0}
+.ph--dark .ph__fallback{background:
+    repeating-linear-gradient(45deg,rgba(255,243,148,.08) 0 12px,transparent 12px 24px),
+    linear-gradient(160deg,#26251f,#1a1916);color:var(--yellow)}
+.ph--dark .ph__fallback svg{fill:var(--yellow)}
+.ph--dark .ph__fallback span{color:#bdbcae}
+.ph--dark .ph__fallback b{color:var(--yellow)}
+/* variante recorte (cão): sem card, fundo transparente */
+.ph--cut{background:transparent;border-radius:0}
+.ph--cut .ph__fallback{background:none;border-radius:var(--r)}
+.ph--cut .ph__fallback svg{width:clamp(90px,20vw,220px);opacity:.5}
+.ph--cut img{object-fit:contain}
+
+/* ---------- paw field (watermark) ---------- */
+.pawfield{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.pawfield svg{position:absolute;fill:currentColor;opacity:.06}
+
+/* ---------- glass liquid (reutilizável) ---------- */
+.glassy{
+  background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.32));
+  backdrop-filter:blur(18px) saturate(180%);-webkit-backdrop-filter:blur(18px) saturate(180%);
+  border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 10px 34px rgba(17,17,15,.10),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.glassy--dark{
+  background:linear-gradient(180deg,rgba(30,29,25,.55),rgba(30,29,25,.30));
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 10px 34px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+/* ---------- NAV (glass) ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:16px}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav__pill{display:flex;gap:4px;border-radius:100px;padding:5px}
+.nav__pill a{font-size:.82rem;font-weight:500;padding:.55em 1.05em;border-radius:100px;color:var(--ink);transition:background .25s,color .25s}
+.nav__pill a:hover,.nav__pill a[data-active]{background:var(--ink);color:var(--paper)}
+.nav__brand{display:flex;align-items:center;gap:.4em;font-weight:600;font-size:1.05rem;letter-spacing:-.02em;
+  padding:.45em .95em;border-radius:100px}
+.nav__brand svg{width:1.25em;height:1.25em;fill:var(--purple)}
+.nav__right{display:flex;align-items:center;gap:8px}
+.nav__phone{width:46px;height:46px;border-radius:50%;display:grid;place-items:center}
+.nav__phone svg{width:16px;height:16px;fill:var(--ink)}
+.nav__book{padding:.78em 1.5em;font-size:.85rem;font-weight:600;color:var(--ink);border-radius:100px;transition:transform .3s ease}
+.nav__book:hover{transform:translateY(-1px);background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.6))}
+@media(max-width:900px){.nav__pill{display:none}}
+
+/* ---------- HERO (1/4) ---------- */
+/* Normal document flow: the about section follows the hero. */
+.hero{position:relative;z-index:0;min-height:100svh;overflow:hidden;display:flex;align-items:center;
+  padding:96px 0 0}
+.hero__inner{width:100%}
+/* a cena (textos/cards) tem altura própria e fica centralizada verticalmente */
+.hero__stage{position:relative;height:clamp(480px,78vh,720px)}
+.hero__wordmark{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);
+  font-family:var(--font);font-weight:400;letter-spacing:-.055em;line-height:.8;color:var(--ink);
+  font-size:clamp(5rem,23.5vw,22.5rem);white-space:nowrap;z-index:1;user-select:none}
+/* cão ancorado no RODAPÉ da seção (bottom:0 do herói), colado na borda de baixo */
+.hero__dog{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:min(88vh,900px);
+  aspect-ratio:925/1479;z-index:2;filter:drop-shadow(0 24px 44px rgba(17,17,15,.16))}
+.hero__head{position:absolute;left:0;top:0;z-index:3;width:max-content;max-width:min(52vw,600px)}
+.hero__head h1{font-family:var(--font);font-weight:600;letter-spacing:-.05em;line-height:1.02;
+  font-size:clamp(1.7rem,3.2vw,2.8rem)}
+/* respiro pros descendentes/itálico não serem cortados pela máscara */
+.hero__head .line{padding:.06em .14em .24em;margin:-.06em -.14em -.18em}
+/* cada linha nunca quebra: mantém sempre 3 linhas e altura constante */
+.hero__head .line > span{white-space:nowrap}
+.hero__head .hand{font-size:1.4em;vertical-align:-.08em}
+.hero__lead{position:absolute;left:0;bottom:0;z-index:3;max-width:34ch}
+.hero__lead h2{font-family:var(--font);font-weight:600;font-size:clamp(1.4rem,2.4vw,2rem);letter-spacing:-.03em;margin:0 0 12px}
+.hero__lead p{color:var(--grey);margin:0 0 22px;font-size:.98rem}
+.hero__cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero__cards{position:absolute;right:0;bottom:0;z-index:3;display:flex;gap:12px;align-items:stretch}
+.hero__social{position:absolute;right:0;top:15%;z-index:4}
+
+.card{border-radius:var(--r);padding:18px}
+.card--dark{background:var(--ink);color:var(--paper);width:190px}
+.card--dark .big{font-family:var(--font);font-weight:700;font-size:2rem;letter-spacing:-.03em}
+.card--dark .sm{font-size:.76rem;color:#c9c8c2;margin-top:4px;line-height:1.35}
+.card--dark .stars{color:var(--yellow);margin-top:8px;letter-spacing:.1em;font-size:.85rem}
+.card--dark{display:flex;flex-direction:column;justify-content:center}
+.card--purple{background:var(--purple);color:var(--ink);width:320px;display:flex;flex-direction:column;justify-content:center;gap:12px;position:relative;overflow:visible}
+.card--purple .t{font-weight:600;font-size:1.02rem;letter-spacing:-.02em;line-height:1.15;max-width:56%}
+/* cão escala pela ALTURA do card: cabeça espia no topo, patas caem sobre a borda de baixo */
+.card--purple .carddog{position:absolute;right:18px;bottom:-47px;height:calc(100% + 24px);width:auto;
+  aspect-ratio:739/1104;z-index:3;pointer-events:none;filter:drop-shadow(0 12px 18px rgba(17,17,15,.28))}
+
+/* card flutuante "tosa higiênica" — imagem P&B, borda amarela, cards empilhados atrás */
+.floatcard{position:relative;width:172px;border-radius:22px;padding:8px;border:2.5px solid var(--yellow);
+  background:var(--ink);color:var(--paper);box-shadow:0 22px 44px rgba(17,17,15,.28)}
+.floatcard::before,.floatcard::after{content:"";position:absolute;inset:0;border-radius:20px;background:#2a2925;z-index:-1}
+.floatcard::before{transform:rotate(6deg) translate(8px,-6px)}
+.floatcard::after{transform:rotate(-4deg) translate(-6px,4px)}
+.floatcard .tag{position:absolute;top:12px;left:16px;z-index:3;font-family:var(--hand);color:var(--paper);font-size:1.15rem;line-height:1}
+.floatcard .thumb{border-radius:15px;overflow:hidden;aspect-ratio:4/5}
+.floatcard .thumb img,.floatcard .thumb .ph__fallback{filter:grayscale(1) contrast(1.05)}
+.floatcard__label{position:absolute;left:18px;bottom:18px;z-index:3;font-weight:600;font-size:.92rem;line-height:1.05;max-width:58%;text-shadow:0 1px 8px rgba(0,0,0,.55)}
+.floatcard .arrow{position:absolute;right:14px;bottom:14px;z-index:3;width:32px;height:32px;background:var(--yellow);border-radius:10px;display:grid;place-items:center}
+.floatcard .arrow svg{width:13px;height:13px;fill:var(--ink)}
+.social{display:flex;flex-direction:column;gap:4px;border-radius:100px;padding:5px}
+.social a{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--ink);transition:background .25s,color .25s}
+.social a:hover{background:var(--ink);color:var(--paper)}
+.social a svg{width:16px;height:16px;fill:currentColor}
+
+/* Dedicated small-screen scene keeps the dog, wordmark and copy in flow. */
+.hero__mobile-scene{display:none}
+@media(min-width:901px) and (max-width:1180px){
+ .hero__cards{gap:10px}.hero .card--dark{width:150px}.hero .card--purple{width:230px}.hero .card{padding:16px}.hero .card--purple .t{font-size:.9rem}.hero__lead{max-width:26ch}.hero__lead p{font-size:.88rem}.hero__dog{height:min(72vh,780px)}.hero__wordmark{font-size:20vw}
+}
+@media(max-width:900px){
+ .nav__inner{justify-content:flex-end}.nav{padding-block:12px}
+ .hero{min-height:0;display:block;padding:90px 0 52px}
+ .hero__inner{max-width:680px}.hero__stage{height:auto;min-height:0;display:flex;flex-direction:column}
+ .hero > .hero__dog,.hero__wordmark{display:none}
+ .hero__head,.hero__lead,.hero__cards,.hero__social{position:relative;inset:auto;transform:none;max-width:none;width:100%}
+ .hero__head h1{font-size:clamp(2.3rem,5.8vw,3.6rem);margin:0;line-height:1.05}
+ .hero__mobile-scene{display:block;position:relative;height:440px;margin:15px calc(-1 * var(--gut)) 0;overflow:hidden}
+ .hero__mobile-scene span{position:absolute;top:35%;left:50%;transform:translateX(-50%);font-size:clamp(5rem,18vw,9.4rem);letter-spacing:-.065em;line-height:1;font-weight:400;white-space:nowrap}
+ .hero__mobile-scene img{position:absolute;height:100%;width:auto;max-width:none;left:50%;bottom:0;transform:translateX(-50%);object-fit:contain;filter:drop-shadow(0 12px 20px #11110f20)}
+ .hero__lead{margin:28px 0 0}.hero__lead h2{font-size:1.75rem}.hero__lead p{font-size:.94rem;max-width:48ch}.hero__cta .btn{min-height:48px}
+ .hero__cards{display:grid;grid-template-columns:.8fr 1.2fr;gap:14px;margin-top:32px;padding-bottom:30px;align-items:stretch}
+ .hero .card{width:auto;min-width:0}.hero .card--purple{min-height:175px}.hero .card--purple .carddog{right:6px;bottom:-30px;height:calc(100% + 10px)}.hero .card--purple .t{font-size:.95rem;max-width:55%}
+ .hero__social{margin-top:0}.hero .social{flex-direction:row;width:fit-content}
+}
+@media(max-width:480px){
+ .hero{padding-top:88px;padding-bottom:38px}.hero__head h1{font-size:clamp(2.1rem,8.8vw,2.65rem)}
+ .hero__mobile-scene{height:345px;margin-top:16px}.hero__mobile-scene span{font-size:21vw;top:36%}
+ .hero__lead{margin-top:23px}.hero__lead h2{font-size:1.45rem}.hero__lead p{font-size:.89rem}.hero__cta{gap:10px}.hero__cta .btn{font-size:.83rem;padding:12px 22px}
+ .hero__cards{grid-template-columns:.85fr 1.15fr;gap:10px;margin-top:26px}.hero .card{padding:14px}.hero .card--dark .big{font-size:1.7rem}.hero .card--dark .sm{font-size:.68rem}.hero .card--purple{min-height:155px}.hero .card--purple .t{font-size:.8rem;max-width:60%}.hero .card--purple .btn{font-size:.68rem!important;padding:9px 12px!important}.hero .card--purple .carddog{right:-4px;bottom:-25px;height:150px}.hero .card--dark .stars{font-size:.69rem}
+}
+
+/* Dog Room: pet photography, ink, butter yellow and lilac. */
+.pet-personality,.care-menu,.pet-album,.booking-request{position:relative;z-index:1;scroll-margin-top:88px}
+.shop-button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:14px 25px;border-radius:100px;background:var(--ink);color:var(--paper);font-size:.85rem;font-weight:500;transition:background .2s,transform .2s}
+.shop-button:hover{background:#3e304f;transform:translateY(-2px)}
+.pet-personality{background:#100f0c;color:var(--paper);overflow:hidden}
+.personality-stage{min-height:680px;position:relative;display:flex;align-items:center}
+.personality-copy{position:relative;z-index:2;width:52%;padding:72px 0 84px}
+.personality-intro{font-size:.83rem;color:#d9cbe9;margin:0 0 25px}
+.personality-copy h2{font-size:clamp(3.5rem,6.4vw,6.2rem);font-weight:600;line-height:1.04;letter-spacing:-.065em;color:var(--yellow);margin:0 0 30px}
+.personality-copy h2 em{font-family:var(--hand);font-weight:700;color:#bba3e9;font-style:normal;letter-spacing:-.02em;font-size:1.3em}
+.personality-copy > p:not(.personality-intro){max-width:39ch;font-size:.93rem;color:#d2cfca;line-height:1.8;margin:16px 0}
+.personality-copy .shop-button{background:var(--yellow);color:var(--ink);margin-top:19px}.personality-copy .shop-button:hover{background:#e4d2ff}
+.personality-pet{position:absolute;margin:0;inset:0 0 0 43%;overflow:hidden}
+.personality-pet img{width:100%;height:100%;object-fit:cover;object-position:center 68%;mask-image:linear-gradient(to right,transparent,black 18%)}
+.personality-pet figcaption{position:absolute;bottom:29px;right:var(--gut);max-width:32ch;text-align:right;font-size:.7rem;color:#e5e0d8}
+
+.care-menu{padding:92px 0 62px;background:var(--paper)}
+.care-menu-heading{margin-bottom:46px;text-align:center}.care-menu-heading h2{font-size:clamp(2.7rem,4.5vw,4.4rem);line-height:1.1;letter-spacing:-.065em;font-weight:600;margin:0}
+.care-menu-heading h2 em{font-family:var(--hand);font-style:normal;color:var(--purple-dk);font-size:1.2em;letter-spacing:0}
+.care-menu-heading > p{font-size:.87rem;line-height:1.8;margin:24px auto 0;color:#5f5965}
+.care-menu-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.care-item{overflow:hidden;border-radius:28px;background:#e4d9f2;display:flex;flex-direction:column}
+.care-item--tosa{background:var(--yellow)}.care-item--higienica{background:var(--ink);color:var(--paper)}
+.care-item-photo{height:310px;margin:14px 14px 0;overflow:hidden;border-radius:18px}
+.care-item-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.care-item:hover img{transform:scale(1.035)}
+.care-item--banho img{object-position:center 65%}.care-item--tosa img{object-position:40% center}.care-item--higienica img{object-position:center}
+.care-item-body{padding:29px 29px 30px;display:flex;flex-direction:column;align-items:start;flex:1}
+.care-item h3{font-size:clamp(1.5rem,2vw,2rem);line-height:1.14;letter-spacing:-.045em;font-weight:600;margin:0 0 18px;max-width:13ch}
+.care-item p{font-size:.84rem;line-height:1.8;margin:0 0 25px;color:#4f435a;max-width:33ch}.care-item--tosa p{color:#5a5133}.care-item--higienica p{color:#c8c1ce}
+.care-item .shop-button{margin-top:auto;font-size:.78rem;min-height:45px;padding:12px 20px}.care-item--higienica .shop-button{background:#d8c2f6;color:var(--ink)}
+.care-menu-help{font-size:.84rem;text-align:center;color:#6d6078;line-height:1.9;margin:32px 0 0}.care-menu-help a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+
+.pet-album{background:var(--yellow);padding:76px 0 45px;overflow:hidden;border-radius:65px 65px 0 0}
+.album-heading{text-align:center;position:relative;z-index:1}.album-heading > span{font-size:.85rem;font-weight:500}.album-heading h2{font-size:clamp(3.2rem,5.5vw,5rem);font-weight:600;letter-spacing:-.065em;line-height:1.04;margin:20px 0}.album-heading h2 em{font-family:var(--hand);font-style:normal;color:#66508b;font-size:1.25em;letter-spacing:-.025em}.album-heading p{font-size:.87rem;line-height:1.8;margin:18px 0 0;color:#5c542d}
+.album-footer{display:flex;justify-content:space-between;align-items:center;gap:25px;margin:0 auto;max-width:1160px}.album-footer p{font-size:.68rem;color:#665d34}.album-footer .shop-button{font-size:.8rem}
+
+.booking-request{background:#cfb8ed;padding:85px 0 90px}
+.booking-request-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(45px,8vw,115px);align-items:start;max-width:1320px}
+.request-copy{padding-top:28px}.request-copy .little-label{font-size:.83rem;color:#493b5b}.request-copy h2{font-size:clamp(2.9rem,4.8vw,4.6rem);line-height:1.08;font-weight:600;letter-spacing:-.06em;margin:25px 0}.request-copy h2 em{font-family:var(--hand);font-size:1.25em;font-style:normal;letter-spacing:0}.request-copy > p{font-size:.89rem;line-height:1.8;color:#504260;max-width:38ch;margin:0}
+.booking-tips{max-width:39ch;margin:31px 0}.booking-tips div+div{margin-top:19px}.booking-tips dt{font-size:.86rem;font-weight:600}.booking-tips dd{font-size:.8rem;color:#504260;line-height:1.8;margin:7px 0 0}
+.visit-info{margin-top:30px}.visit-info strong{font-size:.85rem;font-weight:500}.visit-info p{font-size:.78rem;line-height:1.7;color:#504260;max-width:38ch;margin:10px 0}.visit-info a{display:block;width:fit-content;padding:8px 0;font-size:.77rem;text-decoration:underline;text-underline-offset:4px}
+.request-form{background:#fffaf0;border-radius:30px;padding:38px 40px}.request-form h3{font-size:2rem;font-weight:600;letter-spacing:-.05em;line-height:1.2;margin:0 0 12px}.request-form > p{font-size:.83rem;color:#665c71;line-height:1.7;margin:0 0 26px}
+.request-form label{display:block;font-size:.78rem;font-weight:500;margin:19px 0 9px}.request-form label span{font-weight:400;color:#6b6079;font-size:.7rem}
+.request-form select,.request-form textarea{width:100%;display:block;padding:14px 16px;min-height:52px;font:.85rem var(--font);color:var(--ink);background:#eee7f5;border:1px solid transparent;border-radius:12px}.request-form textarea{resize:vertical;min-height:110px;line-height:1.7}.request-form textarea::placeholder{color:#766885}.request-form .shop-button{display:flex;width:100%;margin-top:25px}.request-form small{font-size:.69rem;line-height:1.7;display:block;color:#706579;margin-top:16px}
+
+@media(max-width:1000px){
+ .personality-stage{min-height:620px}.personality-copy{width:56%}.personality-copy h2{font-size:4.6rem}.personality-copy > p:not(.personality-intro){font-size:.85rem;max-width:34ch}.personality-pet{left:45%}
+ .care-menu-cards{gap:15px}.care-item-photo{height:240px;margin:10px 10px 0}.care-item-body{padding:23px 20px}.care-item h3{font-size:1.5rem}.care-item p{font-size:.79rem}
+ .album-photos{gap:30px}.album-photo img{height:300px}.album-photo--spitz img{height:350px}.album-photo--poodle img{height:275px}.album-photo figcaption span{font-size:.65rem}
+ .booking-request-layout{gap:45px}.request-form{padding:30px}
+}
+@media(max-width:700px){
+ .pet-personality{padding-bottom:0}.personality-stage{min-height:0;display:flex;flex-direction:column;align-items:stretch}.personality-copy{width:100%;padding:54px 0 0}.personality-intro{font-size:.75rem;margin-bottom:23px}.personality-copy h2{font-size:clamp(3.6rem,14vw,5rem);margin-bottom:23px}.personality-copy > p:not(.personality-intro){max-width:38ch;font-size:.86rem}.personality-copy .shop-button{font-size:.81rem}
+ .personality-pet{position:relative;inset:auto;margin:5px calc(-1 * var(--gut)) 0;height:370px}.personality-pet img{mask-image:linear-gradient(to bottom,transparent,black 22%);object-position:center 67%}.personality-pet figcaption{font-size:.62rem;bottom:18px;max-width:30ch}
+ .care-menu{padding:58px 0 42px}.care-menu-heading{margin-bottom:30px}.care-menu-heading h2{font-size:2.6rem}.care-menu-heading > p{font-size:.8rem;margin-top:20px}.care-menu-cards{grid-template-columns:1fr;gap:23px}.care-item{border-radius:25px}.care-item-photo{height:280px;margin:12px 12px 0;border-radius:16px}.care-item-body{padding:25px}.care-item h3{font-size:1.95rem;max-width:none}.care-item p{font-size:.85rem;max-width:none;margin-bottom:20px}.care-item .shop-button{font-size:.82rem}.care-menu-help{text-align:left;font-size:.78rem;margin-top:25px}
+ .pet-album{border-radius:35px 35px 0 0;padding:50px 0 35px}.album-heading > span{font-size:.77rem}.album-heading h2{font-size:2.5rem}.album-heading p{font-size:.81rem}.album-photos{grid-template-columns:1fr 1fr;gap:32px 18px;padding:0 8px 10px;margin:35px 0 22px}.album-photo img{height:220px}.album-photo--cocker{margin-top:18px;transform:rotate(-3deg)}.album-photo--spitz img{height:255px}.album-photo--poodle{grid-column:1/-1;width:66%;justify-self:center;margin-top:0;transform:rotate(3deg)}.album-photo--poodle img{height:290px}.album-photo figcaption{margin-top:13px;gap:5px}.album-photo figcaption strong{font-size:1.5rem}.album-photo figcaption span{font-size:.65rem;line-height:1.6}.album-footer{flex-direction:column;gap:8px;text-align:center}.album-footer p{font-size:.63rem}
+ .booking-request{padding:50px 0}.booking-request-layout{grid-template-columns:1fr;gap:30px}.request-copy{padding-top:0}.request-copy h2{font-size:3.2rem;margin:22px 0}.request-copy > p{font-size:.85rem}.booking-tips{margin:24px 0}.visit-info{margin-top:23px}.request-form{padding:28px 23px;border-radius:25px}.request-form h3{font-size:1.8rem}.request-form select,.request-form textarea{font-size:16px}.request-form small{font-size:.68rem}
+}
+
+/* ---------- BILLBOARD (imagem full-screen, com parallax) ---------- */
+.bill{position:relative;z-index:1;height:min(100svh,64vw);overflow:hidden;background:var(--ink)}
+.bill__media{position:absolute;inset:0;overflow:hidden}
+.bill__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;will-change:transform}
+
+/* Accessible copy on desktop; a readable vertical poster on small screens. */
+.bill__poster{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:900px){
+ .bill{height:auto;min-height:0;padding:60px 20px;background:#11110f}
+ .bill__media img{object-fit:cover;object-position:center;will-change:auto;mask-image:linear-gradient(to bottom,#000 0 9%,transparent 11% 89%,#000 91% 100%)}
+ .bill__poster{position:relative;width:100%;height:auto;min-height:470px;padding:42px 27px 27px;margin:0;clip-path:none;white-space:normal;background:#f2f0e5;box-shadow:0 12px 30px #0006;overflow:hidden}
+ .bill__message{position:relative;z-index:1;display:flex;flex-direction:column;min-height:400px;max-width:520px;margin-inline:auto}
+ .bill__message h2{font-size:clamp(1.7rem,7.6vw,2.8rem);font-weight:600;letter-spacing:-.055em;line-height:1.15;margin:0;text-wrap:balance;color:var(--ink)}
+ .bill__message h2 em{display:block;font-family:var(--hand);font-size:1.5em;line-height:1.05;letter-spacing:-.025em;font-weight:700;font-style:normal;color:#8f74bd;margin-top:13px}
+ .bill__message p{font-size:clamp(.87rem,3.7vw,1rem);line-height:1.8;color:#36332e;margin:28px 0 30px;max-width:34ch}
+ .bill__signature{display:block;align-self:flex-end;font-size:1rem;letter-spacing:-.04em;font-weight:600;margin-top:auto;color:var(--ink)}
+}
+@media(max-width:360px){.bill{padding:48px 16px}.bill__poster{padding:33px 23px 24px;min-height:450px}.bill__message{min-height:393px}}
+
+/* ---------- FOOTER ---------- */
+.footer{background:var(--ink);color:var(--paper);padding-block:clamp(50px,7vw,90px)}
+.footer__big{font-family:var(--font);font-weight:700;letter-spacing:-.05em;line-height:.85;font-size:clamp(4rem,17vw,15rem);display:flex;align-items:center;gap:.15em}
+.footer__big svg{width:.5em;height:.5em;fill:var(--purple)}
+.footer__row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:36px;align-items:center}
+.footer__row a,.footer__row span{font-size:.82rem;color:#b6b5ae}
+.footer__row a:hover{color:var(--yellow)}
+
+/* ---------- reduced motion ---------- */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .cursor{display:none}
+}
+:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+
+/* Photo mosaic and native modal viewer. */
+.pet-mosaic{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:210px 210px 230px;gap:16px;margin:44px 0 30px}
+.pet-tile{position:relative;display:block;border:0;padding:0;overflow:hidden;border-radius:19px;background:#d9c9b0;cursor:zoom-in;text-align:left;isolation:isolate}
+.pet-tile img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.pet-tile:hover img{transform:scale(1.04)}
+.pet-tile span{position:absolute;left:0;right:0;bottom:0;padding:35px 19px 17px;background:linear-gradient(transparent,#11110fd9);color:white;font-size:.85rem;font-weight:500}
+.pet-tile--cocker{grid-column:1/3;grid-row:1/3}.pet-tile--cocker img{object-position:center 42%}.pet-tile--branco{grid-column:3/5;grid-row:2}.pet-tile--branco img{object-position:center 42%}.pet-tile--poodle img{object-position:center 28%}.pet-tile--beagle img{object-position:center 55%}.pet-tile--amigos img{object-position:center 68%}
+.pet-viewer{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:24px;border:0;background:#11110ff5;color:var(--paper);overflow:hidden;box-sizing:border-box}
+.pet-viewer::backdrop{background:#11110f}.pet-viewer-content{position:relative;width:100%;height:100%;max-width:1400px;margin:auto;display:flex;align-items:center;justify-content:center}
+.pet-viewer figure{margin:35px 65px 0;max-width:100%;width:100%;height:calc(100% - 70px);display:flex;flex-direction:column;align-items:center;justify-content:center;touch-action:pan-y}
+.pet-viewer figure img{width:auto;height:auto;max-width:100%;max-height:calc(100% - 65px);object-fit:contain;border-radius:12px}
+.pet-viewer figcaption{display:flex;gap:20px;align-items:center;justify-content:space-between;width:min(100%,650px);padding-top:17px;font-size:.92rem}.pet-viewer figcaption small{font-size:.76rem;color:#d3c1e6;white-space:nowrap}
+.pet-viewer button{font:500 .85rem var(--font);border:0;background:#e2d2f6;color:var(--ink);cursor:pointer;min-width:48px;min-height:48px;display:flex;align-items:center;justify-content:center;border-radius:12px}.pet-viewer button:hover{background:var(--yellow)}
+.viewer-close{position:absolute;right:0;top:0;padding:10px 16px;gap:12px}.viewer-close span{font-size:1.7rem;line-height:1}.viewer-prev,.viewer-next{position:absolute;top:50%;transform:translateY(-50%)}.viewer-prev{left:0}.viewer-next{right:0}
+@media(max-width:900px){.pet-mosaic{grid-template-rows:180px 180px 190px;gap:12px}.pet-tile span{font-size:.73rem;padding:30px 13px 13px}}
+@media(max-width:600px){
+ .pet-mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:190px;gap:11px;margin-top:30px}.pet-tile{border-radius:14px}.pet-tile--cocker{grid-column:1/3;grid-row:1/3}.pet-tile--branco{grid-column:1/3;grid-row:auto;height:auto}.pet-tile--amigos{height:auto}.pet-tile span{font-size:.76rem}.pet-tile--cocker img{object-position:center 43%}
+ .pet-viewer{padding:16px}.pet-viewer figure{margin:60px 0 75px;height:calc(100% - 135px)}.pet-viewer figure img{max-height:calc(100% - 65px)}.pet-viewer figcaption{font-size:.85rem;gap:10px}.viewer-prev,.viewer-next{top:auto;bottom:6px;transform:none}.viewer-prev{left:calc(50% - 60px)}.viewer-next{right:calc(50% - 60px)}
+}

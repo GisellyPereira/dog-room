@@ -1,0 +1,35 @@
+DOG ROOM — PERSONALIZAÇÃO PARA UM PET SHOP
+
+1. Marca e contato
+Edite src/core/config/site.ts: BRAND, WhatsApp com DDI/DDD, telefone,
+Instagram e cidade. O telefone atual é demonstrativo; substitua antes de usar
+os pedidos de orçamento com clientes.
+
+2. Serviços e informações de visita
+Edite src/core/config/petshop.ts. Cada serviço tem descrição, inclusões,
+observação e imagem. Confirme as inclusões com o responsável da loja.
+BUSINESS recebe endereço, link do mapa e horário de funcionamento reais.
+Se os campos ficarem vazios, a página oferece uma consulta pelo WhatsApp.
+As orientações de orçamento e cuidados especiais estão em Booking.tsx.
+
+3. Fotografias e credibilidade
+As seções após a hero usam fotografias reais ilustrativas do Pexels.
+Fontes e autores: public/images/editorial/sources.json e
+public/images/gallery/sources.json. Substitua-as por
+fotos autorizadas da loja na entrega. A apresentação fica em Story.tsx.
+A galeria fica em Gallery.tsx. As oito imagens abrem em uma galeria com navegação pelas setas, teclado
+e gesto de deslizar; não identificam clientes reais da loja. Os serviços aparecem juntos, sem abas.
+Nenhum novo depoimento, preço ou resultado foi inventado nesta revisão.
+A hero foi preservada: seus números de experiência, avaliações e desconto
+são conteúdo demonstrativo e precisam de validação/substituição para cada loja.
+
+4. Solicitação de orçamento
+O visitante escolhe serviço, porte e observações. O botão abre o WhatsApp
+com a mensagem preparada; o visitante revisa e envia. O site não armazena
+os dados, não confirma horários automaticamente e não envia a mensagem sozinho.
+Cada serviço do catálogo também tem um pedido específico pelo WhatsApp.
+
+5. Conferência de entrega
+Verifique o número de destino, o endereço, o mapa, o Instagram, as inclusões
+e as políticas de atendimento com o comprador. Confira a página em celular
+antes da publicação. Build: npm run build. Prévia local: npm run dev.

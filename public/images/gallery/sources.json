@@ -1,0 +1,42 @@
+{
+  "license": "https://www.pexels.com/license/",
+  "usage": "Fotografias ilustrativas, não representam clientes do Dog Room. Substituir por fotografias autorizadas da loja ao personalizar.",
+  "assets": [
+    {
+      "file": "cocker.jpg",
+      "photographer": "Christopher Welsch Leveroni",
+      "source": "https://www.pexels.com/photo/adorable-cocker-spaniel-dog-portrait-on-white-34263865/"
+    },
+    {
+      "file": "spitz.jpg",
+      "photographer": "tiago alves",
+      "source": "https://www.pexels.com/photo/portrait-of-a-white-fluffy-dog-19653955/"
+    },
+    {
+      "file": "poodle.jpg",
+      "photographer": "Nihal Arslan",
+      "source": "https://www.pexels.com/photo/adorable-brown-poodle-puppy-indoors-29286575/"
+    },
+    {
+      "file": "branco.jpg",
+      "photographer": "Miguel González",
+      "source": "https://www.pexels.com/photo/white-dog-lying-against-a-black-background-16622802/"
+    },
+    {
+      "file": "collie.jpg",
+      "source": "https://www.pexels.com/photo/portrait-of-dog-19856139/"
+    },
+    {
+      "file": "beagle.jpg",
+      "source": "https://www.pexels.com/photo/brown-and-white-short-coated-dog-with-leash-sitting-14116522/"
+    },
+    {
+      "file": "puggle.jpg",
+      "source": "https://www.pexels.com/photo/profile-portrait-of-a-pug-beagle-mix-dog-32216449/"
+    },
+    {
+      "file": "amigos.jpg",
+      "source": "https://www.pexels.com/photo/two-dogs-standing-on-a-rock-near-water-28171122/"
+    }
+  ]
+}
