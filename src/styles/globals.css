@@ -168,7 +168,7 @@ a[href],button,[role="button"],.btn{cursor:pointer}
 .hero__stage{position:relative;height:clamp(480px,78vh,720px)}
 .hero__wordmark{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);
   font-family:var(--font);font-weight:400;letter-spacing:-.055em;line-height:.8;color:var(--ink);
-  font-size:clamp(5rem,23.5vw,22.5rem);white-space:nowrap;z-index:1;user-select:none}
+  font-size:clamp(3rem,19vw,22.5rem);white-space:nowrap;z-index:1;user-select:none}
 /* cão ancorado no RODAPÉ da seção (bottom:0 do herói), colado na borda de baixo */
 .hero__dog{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:min(88vh,900px);
   aspect-ratio:925/1479;z-index:2;filter:drop-shadow(0 24px 44px rgba(17,17,15,.16))}
@@ -219,7 +219,7 @@ a[href],button,[role="button"],.btn{cursor:pointer}
 /* Dedicated small-screen scene keeps the dog, wordmark and copy in flow. */
 .hero__mobile-scene{display:none}
 @media(min-width:901px) and (max-width:1180px){
- .hero__cards{gap:10px}.hero .card--dark{width:150px}.hero .card--purple{width:230px}.hero .card{padding:16px}.hero .card--purple .t{font-size:.9rem}.hero__lead{max-width:26ch}.hero__lead p{font-size:.88rem}.hero__dog{height:min(72vh,780px)}.hero__wordmark{font-size:20vw}
+ .hero__cards{gap:10px}.hero .card--dark{width:150px}.hero .card--purple{width:230px}.hero .card{padding:16px}.hero .card--purple .t{font-size:.9rem}.hero__lead{max-width:26ch}.hero__lead p{font-size:.88rem}.hero__dog{height:min(72vh,780px)}.hero__wordmark{font-size:19vw}
 }
 @media(max-width:900px){
  .nav__inner{justify-content:flex-end}.nav{padding-block:12px}
@@ -238,7 +238,7 @@ a[href],button,[role="button"],.btn{cursor:pointer}
 }
 @media(max-width:480px){
  .hero{padding-top:88px;padding-bottom:38px}.hero__head h1{font-size:clamp(2.1rem,8.8vw,2.65rem)}
- .hero__mobile-scene{height:345px;margin-top:16px}.hero__mobile-scene span{font-size:21vw;top:36%}
+ .hero__mobile-scene{height:345px;margin-top:16px}.hero__mobile-scene span{font-size:20vw;top:36%}
  .hero__lead{margin-top:23px}.hero__lead h2{font-size:1.45rem}.hero__lead p{font-size:.89rem}.hero__cta{gap:10px}.hero__cta .btn{font-size:.83rem;padding:12px 22px}
  .hero__cards{grid-template-columns:.85fr 1.15fr;gap:10px;margin-top:26px}.hero .card{padding:14px}.hero .card--dark .big{font-size:1.7rem}.hero .card--dark .sm{font-size:.68rem}.hero .card--purple{min-height:155px}.hero .card--purple .t{font-size:.8rem;max-width:60%}.hero .card--purple .btn{font-size:.68rem!important;padding:9px 12px!important}.hero .card--purple .carddog{right:-4px;bottom:-25px;height:150px}.hero .card--dark .stars{font-size:.69rem}
 }
